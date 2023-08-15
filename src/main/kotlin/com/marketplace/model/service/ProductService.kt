@@ -12,9 +12,7 @@ class ProductService(
 ) {
 
     fun save(product: Product): Product {
-        if (productRepository.existsById(product.id)) {
-            throw HttpStatusException(HttpStatus.BAD_REQUEST, "Product with ID {id} already exists.")   //Preventing id duplicates in the database
-        }
+
         return productRepository.save(product)
     }
 
