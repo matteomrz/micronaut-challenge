@@ -11,10 +11,8 @@ class ProductService(
     private val productRepository: ProductRepository
 ) {
 
-    fun save(product: Product): Product {
-
-        return productRepository.save(product)
-    }
+    fun save(product: Product): Product =
+        productRepository.save(product)
 
     fun getAll(): List<Product> =
         productRepository.findAll()
