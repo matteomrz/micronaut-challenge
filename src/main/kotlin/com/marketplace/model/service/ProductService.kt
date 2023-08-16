@@ -11,6 +11,8 @@ class ProductService(
     private val productRepository: ProductRepository
 ) {
 
+    private val hexRegex = """^[0-9a-fA-F]{24}$""".toRegex() //Needed Format for getById to work properly
+
     fun save(product: Product): Product =
         productRepository.save(product)
 
@@ -18,9 +20,15 @@ class ProductService(
         productRepository.findAll()
             .toList()
 
-    fun getById(id: String): Product =
-        productRepository.findById(id)
-            .orElseThrow{HttpStatusException(HttpStatus.NOT_FOUND, "Product with ID {id} was not found.")}
+    fun getById(id: String): Product {
+        if (!hexRegex.matches(id)) {
+            throw HttpStatusException(HttpStatus.BAD_REQUEST,
+                "Product ID does not have the correct format. A valid ID should consist of exactly 24 characters, each representing a valid hexadecimal digit (0-9, a-f, or A-F).")
+        }
+
+        return productRepository.findById(id)
+            .orElseThrow { HttpStatusException(HttpStatus.NOT_FOUND, "Product with ID {id} was not found.") }
+    }
 
     fun update(id: String, product: Product): Product {
         val saved = getById(id)
