@@ -1,3 +1,41 @@
+# Micronaut Challenge - SelectCode
+
+## Dependencies: 
+### MongoDB Compass (version 1.39.1): 
+- GUI for MongoDB, a NoSQL Database. 
+- Download: (https://www.mongodb.com/try/download/compass)
+  
+### Docker Desktop:
+- Needed to run MongoDB
+- Download: (https://www.docker.com/products/docker-desktop/)
+
+## Starting the Application
+### Starting MongoDB:
+- Pull the MongoDB container: ``` docker pull mongo:latest ```
+- Run the container: ``` docker run -d -p 27017:27017 –name=mongo-example mongo:latest ```
+- Open MongoDB Compass
+- Set URI to: ``` mongodb://localhost:27017 ```
+- Click Connect
+### Running the Application
+- Clone the repository: ``` git clone https://github.com/matteomrz/micronaut-challenge/ ```
+- Build the project: ``` ./gradlew build  ```
+- Run the Application: ``` ./gradlew run ```
+#### Alternatively:
+- Open IntelliJ IDEA
+- Select "File" -> "New" -> "Project from Version Control" -> "Git"
+- Paste the repository URL: ``` https://github.com/matteomrz/micronaut-challenge ```
+- Choose a directory to clone the repository
+- Click ``` Clone ```
+- Run ``` Application.kt ```
+
+## Running Tests
+- Build the project: ``` ./gradlew build  ```
+- Run the Tests: ``` ./gradlew test ```
+- Test results are available at ``` build/reports/tests/test/index.html ``` in the project directory.
+#### Alternatively:
+- Open the project in IntelliJ
+- Run ``` ProductAndOrderControllerTest.kt ```
+
 ## Micronaut 4.0.3 Documentation
 
 - [User Guide](https://docs.micronaut.io/4.0.3/guide/index.html)
